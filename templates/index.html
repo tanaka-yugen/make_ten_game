@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10を作るゲーム</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>10を作るゲーム</h1>
+    
+    <p>数字を組み合わせて、計算結果を10にしよう！</p>
+    
+    <div class="panel" id="numbers">
+      {% for num in numbers %}
+        <div class="draggable number" draggable="true" data-value="{{ num }}">{{ num }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="panel" id="operators">
+      <div class="draggable operator" draggable="true" data-value="+">+</div>
+      <div class="draggable operator" draggable="true" data-value="-">-</div>
+      <div class="draggable operator" draggable="true" data-value="×">×</div>
+      <div class="draggable operator" draggable="true" data-value="÷">÷</div>
+      <div class="draggable operator" draggable="true" data-value="(">(</div>
+      <div class="draggable operator" draggable="true" data-value=")">)</div>
+    </div>
+
+    <!-- 計算欄（数式を作るエリア）を追加 -->
+    <div class="dropzone" id="formula-panel"></div>
+    
+    <button id="submit">計算</button>
+    <button id="reset">リセット</button>
+    <p id="result"></p>
+
+    <!-- クリアモーダル -->
+    <div id="clear-modal" class="modal">
+      <div class="modal-content">
+        <p>🎉 クリア！ 🎉</p>
+        <button id="retry">もう一問！</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
